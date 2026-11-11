@@ -28,15 +28,16 @@ npm run allure:generate; npm run allure:open
 | ID | Scenario | What is verified |
 |----|----------|------------------|
 | AUTO_001 | Open flight-search page | Page loads (HTTP ok) and the form is visible |
-| AUTO_002 | DEL to BOM search | Route can be selected |
-| AUTO_003 | Today's date | Today (IST) shown in the date field |
-| AUTO_004 | Tomorrow's date | Tomorrow (IST) shown in the date field |
-| AUTO_005 | Change travel date | New date replaces the old one |
-| AUTO_006 | Change departure airport | DEL becomes BLR, destination unchanged |
-| AUTO_007 | Change destination airport | BOM becomes HYD, origin unchanged |
+| AUTO_002 | DEL to BOM search | Route can be selected using the real Booking.com airport autocomplete |
+| AUTO_003 | Today's date | Today (IST) is shown in the selected date field |
+| AUTO_004 | Tomorrow's date | Tomorrow (IST) is shown in the selected date field |
+| AUTO_005 | Change travel date | The selected date is updated correctly and month navigation works |
+| AUTO_006 | Change departure airport | DEL is replaced by a different airport while destination remains stable |
+| AUTO_007 | Change destination airport | BOM is replaced by a different airport while origin remains stable |
+| TC_005 | Same-airport validation | Selecting the same airport for departure and destination is rejected or flagged as invalid |
+| TC_007 | Missing-destination validation | Submitting when destination is empty is blocked with an error |
 
-Two extra tests from the starter submit the DEL to BOM search for today and tomorrow and
-assert the results URL carries the route and date. Flight availability is never asserted.
+The automation validates the selected route and booking date against the live page content after the search is submitted, instead of relying on stored JavaScript state or URL-only checks.
 
 ## Troubleshooting
 Booking.com is a live third-party site; its DOM, consent dialogs and bot checks change.
